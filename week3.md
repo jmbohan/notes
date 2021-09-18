@@ -12,4 +12,4 @@ Program
 Portfolio
 : A group of projects or programs from past, present and future
 
-idk
+idk for some odd  reason this repo is acting strange
