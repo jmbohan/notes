@@ -12,3 +12,7 @@ Project
 repriortisation 
 : finding the procedures that are the most important at the current moment 
 
+| Syntax      | Description | Test Text     |
+| :---        |    :----:   |          ---: |
+| Header      | Title       | Here's this   |
+| Paragraph   | Text        | And more      |
