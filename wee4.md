@@ -12,7 +12,9 @@ Project
 repriortisation 
 : finding the procedures that are the most important at the current moment 
 
-| Syntax      | Description | Test Text     |
-| :---        |    :----:   |          ---: |
-| Header      | Title       | Here's this   |
-| Paragraph   | Text        | And more      |
+| Traditional          | Agile             |
+| :---                 |    :----:         |
+| Complete Solutions   | Functional Modules|
+| Linear Development   | Short Iterations  |
+| Lock Down Change     | Expermitation, Improvement and repriortisation | 
+|Users specifiy all requirements to start|Users embedded throughout the process|
