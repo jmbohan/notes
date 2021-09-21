@@ -19,7 +19,7 @@ Repriortisation
 | Lock Down Change                        | Experimentation, Improvement and repriortisation  |
 | Users specify all requirements to start |       Users embedded throughout the process       |
 
-## Stacy Matrix
+## Stacey Matrix
 
 Horizontal axis is high acceptance closer to the axis
 
@@ -31,8 +31,15 @@ Quadrants of characteristics and the management style it takes
 
 <img src="img/complexity.png" alt="complexity" style="height: 300px; width:700px;"/>
 
-agile vs waterfall
+Agile vs waterfall
 
 <img src="img/agile vs waterfall.png" alt="complexity" style="height: 300px; width:700px;"/>
 
-is this changing the overall file?
+Fixed vs variable
+
+| Agile                                   | Waterfall                                         |
+| :-------------------------------------- | :-----------------------------------------------: |
+| Fixed                                   | Fixed                                             |
+| :-------------------------------------- | :-----------------------------------------------: |
+| Time and Cost                           | scope                                             |
+| Unknown                                 | known                                             |
