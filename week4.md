@@ -34,3 +34,5 @@ Quadrants of characteristics and the management style it takes
 agile vs waterfall
 
 <img src="img/agile vs waterfall.png" alt="complexity" style="height: 300px; width:700px;"/>
+
+is this changing the overall file?
