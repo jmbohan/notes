@@ -27,14 +27,6 @@ Vertical is high certainty to low acceptance
 
 <img src="img/stacy matrix.png" alt="Stacy Matrix" style="height: 300px; width:700px;"/>
 
+Quadrants of characteristics and the management style it takes
 
-
-
-
-
-
-
-
-
-
-
+<img src="img/complexity.png" alt="complexity" style="height: 300px; width:700px;"/>
