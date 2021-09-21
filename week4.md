@@ -16,10 +16,10 @@ Repriortisation
 | :-------------------------------------- | :-----------------------------------------------: |
 | Complete Solutions                      |                Functional Modules                 |
 | Linear Development                      |                 Short Iterations                  |
-| Lock Down Change                        | Experimentation, Improvement and repriortisation |
+| Lock Down Change                        | Experimentation, Improvement and repriortisation  |
 | Users specify all requirements to start |       Users embedded throughout the process       |
 
-Stacy Matrix
+## Stacy Matrix
 
 Horizontal axis is high acceptance closer to the axis
 
@@ -30,3 +30,7 @@ Vertical is high certainty to low acceptance
 Quadrants of characteristics and the management style it takes
 
 <img src="img/complexity.png" alt="complexity" style="height: 300px; width:700px;"/>
+
+agile vs waterfall
+
+<img src="img/agile vs waterfall.png" alt="complexity" style="height: 300px; width:700px;"/>
