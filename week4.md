@@ -16,7 +16,7 @@ Repriortisation
 | :-------------------------------------- | :-----------------------------------------------: |
 | Complete Solutions                      |                Functional Modules                 |
 | Linear Development                      |                 Short Iterations                  |
-| Lock Down Change                        | Experimentation, Improvement and reprioritization |
+| Lock Down Change                        | Experimentation, Improvement and repriortisation |
 | Users specify all requirements to start |       Users embedded throughout the process       |
 
 Stacy Matrix
