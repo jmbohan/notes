@@ -70,3 +70,15 @@ Before you can monitor your application’s performance using Datadog, you need 
 You can also [**manually instrument**](https://docs.datadoghq.com/tracing/manual_instrumentation/) your app for tracing in-house code not captured by automatic instrumentation and for deeper visibility and context into spans, including assigning any custom span tags.
 
 In the following hands-on activity, you will instrument an ecommerce application for Datadog APM.
+
+# Correlate Logs and Traces
+
+[Docs](https://docs.datadoghq.com/) &gt; [APM](https://docs.datadoghq.com/tracing/) &gt; [Correlate APM Data with Other Telemetry](https://docs.datadoghq.com/tracing/other_telemetry/) &gt; [Correlate Logs and Traces](https://docs.datadoghq.com/tracing/other_telemetry/connect_logs_and_traces/)
+
+![Logs in Traces](https://datadog-docs.imgix.net/images/tracing/connect_logs_and_traces/trace_id_injection.32c00c69e59d6c50e6c89efc16b27af3.png?fit=max&auto=format)
+
+The correlation between Datadog APM and Datadog Log Management is improved by the injection of trace IDs, span IDs, `env`, `service`, and `version` as attributes in your logs. With these fields, you can find the exact logs associated with a specific service and version, or all logs correlated to an observed [trace](https://docs.datadoghq.com/tracing/glossary/#trace).
+
+It is recommended to configure your application’s tracer with `DD_ENV`, `DD_SERVICE`, and `DD_VERSION`. This will provide the best experience for adding `env`, `service`, and `version`. See the [unified service tagging](https://docs.datadoghq.com/getting_started/tagging/unified_service_tagging) documentation for more details.
+
+Before correlating traces with logs, ensure your logs are either sent as JSON or [parsed by the proper language level log processor](https://docs.datadoghq.com/agent/logs/#enabling-log-collection-from-integrations). Your language level logs *must* be turned into Datadog attributes in order for traces and logs correlation to work.
