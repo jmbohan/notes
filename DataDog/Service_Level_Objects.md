@@ -268,9 +268,9 @@ As determined earlier, the second Storedog SLO is: *`"Over the past 30 days, 99%
 
 3. Under **Good events**, in the **a** field, insert `trace.rack.request.hits`. Then update each field as follows:
    - In the **from** field, insert each of the following:
-     - `env:ruby-shop`
-     - `service:store-frontend`
-     - `resource_name:spree::orderscontroller_edit`
+     - `env:{yourenv}`
+     - `service:your-service`
+     - `resource_name`
    - Leave **sum by** blank.
 
    ![Good events fields visible in New SLO Form](https://play.instruqt.com/assets/tracks/vv9tknii38ii/e0763a046a7d7a5e1538baf4104ebfeb/assets/first-half-good-events-in-new-slo-form.png)
@@ -282,9 +282,9 @@ As determined earlier, the second Storedog SLO is: *`"Over the past 30 days, 99%
 5. Additional fields will appear. Complete them as follows:
    - For **b**, replace the pre-populated value with `trace.rack.request.errors`.
    - In the **from** field, confirm the following are present:
-     - `env:ruby-shop`
-     - `service:store-frontend`
-     - `resource_name:spree::orderscontroller_edit`
+     - `env:{yourenv}`
+     - `service:your-service`
+     - `resource_name`
    - Leave **sum by** blank.
 
    ![A and B queries both complete under Good Events section of New Metric-Based SLO form](https://play.instruqt.com/assets/tracks/vv9tknii38ii/2a9bf00407834bd5c0aa51ac10cf0108/assets/first-two-good-event-queries-in-new-slo-form.png)
@@ -298,9 +298,9 @@ As determined earlier, the second Storedog SLO is: *`"Over the past 30 days, 99%
 7. Under **Total events**, update fields as follows:
    - **a**: `trace.rack.request.hits`
    - **from**: Add each of the following:
-     - `env:ruby-shop`
-     - `service:store-frontend`
-     - `resource_name:spree::orderscontroller_edit`
+     - `env:{yourenv}`
+     - `service:your-service`
+     - `resource_name`
    - **sum by**: Leave blank.
 
    ![New SLO form with section one complete](https://play.instruqt.com/assets/tracks/vv9tknii38ii/0258b6dfe788f0a5a0e25d2e9df1c86d/assets/total-events-section-of-new-slo-form.png)
@@ -312,24 +312,68 @@ As determined earlier, the second Storedog SLO is: *`"Over the past 30 days, 99%
 
 9. Under **Add name and tags**, enter the following **Name**:
 
-   `Managing Items in the Cart`
+   `Comparing Requests`
 
 For Description, copy/paste the following:
 
-`99% of requests to the cart will be successful`
+`99% of requests will be successful`
 
 Select each of the following **Tags**:
 
-- `env:ruby-shop`
-- `service:store-frontend`
-- `resource_name:spree::orderscontroller_edit`
+- `env:{yourenv}`
+- `service:your-service`
+- `resource_name`
 
-Leave **Team Tags** blank.
+Add **Team Tags** as-needed.
 
 ![New SLO form with section three complete](https://play.instruqt.com/assets/tracks/vv9tknii38ii/738962b25b041ddf11852047b3dd2609/assets/new-slo-section-three-complete.png)
 
 Click **Create**. You will be directed to detail panel for the new SLO.
 
 ![New SLO details in Datadog UI](https://play.instruqt.com/assets/tracks/vv9tknii38ii/661b78746276c6607913aaa2232447c4/assets/new-slo-details.png)
+
+## Creating an error budget ## 
+
+[Error budget monitors](https://docs.datadoghq.com/monitors/service_level_objectives/error_budget) notify you when an SLO's error budget has been consumed to (or past) a point of your choosing.
+
+1. In the detail panel for the **SLO you want an error budget for** you just created, click the **Alerts** tab.
+
+   > **Note**: You can access this page by navigating to **Service Mgmt > SLOs** and clicking **SLO you want an error budget for**.
+
+   ![Alerts tab as seen in SLO Detail Panel](https://play.instruqt.com/assets/tracks/vv9tknii38ii/bec8c079ebd06830902c06ebff0fd7f4/assets/alerts-tab-in-slo-detail-panel.png)
+
+2. In the Alerts tab, click the **New Monitor** button on the right. You will navigate to a form.
+
+3. Under **Select SLO**, confirm your `SLO you want an error budget for` SLO is listed.
+
+   ![Select SLO option in New Monitor form](https://play.instruqt.com/assets/tracks/vv9tknii38ii/2943dd3bd48d67b5110b91b1126759bd/assets/select-slo-in-new-monitor-form.png)
+
+4. Under **Set alert conditions**, select **Error Budget**.
+   - Update the **Alert if** line to read: `95` **% of budget for** `30-day target (primary)` **is consumed**.
+   - Update the error budget **Warn if** line to read: `90` **% is consumed**.
+
+   ![Set Alert Conditions in New Monitor Form](https://play.instruqt.com/assets/tracks/vv9tknii38ii/891ec5080f3e07c4f1404a3a36e5a3de/assets/set-alert-conditions-in-new-monitor-form.png)
+
+5. Under **Notify your team**, enter the following in the subject field:
+   
+   `Error Budget Alert on SLO: SLO you want an error budget for`
+
+6. Add a message to the text body 
+
+7. Adjust default values as-needed in **Notify your services and your team members**, **Content displayed in notification** and **Renotification** fields.
+
+In the **Tags** field (*NOT* the **Add SLO Tags** option), select each of the following:
+     - `env:{yourenv}`
+     - `service:your-service`
+     - `resource_name`
+Leave remaining fields as-is. The completed form should look like similar this:
+
+[![Error budget monitor create](https://play.instruqt.com/assets/tracks/vv9tknii38ii/4f66cba9992e804fc7816ece4466f100/assets/errorbudget-monitor-create.png)](https://play.instruqt.com/assets/tracks/vv9tknii38ii/4f66cba9992e804fc7816ece4466f100/assets/errorbudget-monitor-create.png)
+
+Click **Create**. You will navigate to a detail page for your new monitor. The status will initially read `NO DATA`:
+
+[![New Error Budget alert in Datadog UI](https://play.instruqt.com/assets/tracks/vv9tknii38ii/2717ae8824ea50c259ea6db949dc5156/assets/new-error-budget-alert.png)](https://play.instruqt.com/assets/tracks/vv9tknii38ii/2717ae8824ea50c259ea6db949dc5156/assets/new-error-budget-alert.png)
+
+It will take several minutes for the monitor to evaluate data and update the status.
 
 

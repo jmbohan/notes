@@ -1,0 +1,775 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width initial-scale=1">
+<title>Service_Level_Objects.md</title>
+<style type="text/css">
+.content {
+  padding: 86.45px 80px
+}
+</style>
+<style type="text/css">
+.content {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  max-width: 700px; /* 700px is the width of the post in Medium */
+}
+
+/* hide TOC(table of contents). it's height is calculated from the original container */
+.content--buffer .table-of-contents {
+  height: 0;
+}
+
+.content > :first-child,
+.content > :first-child > * /* nested blocks */ {
+  margin-top: 0;
+}
+
+.content > :last-child,
+.content > :last-child > * /* nested blocks */ {
+  margin-bottom: 0;
+}
+
+.mermaid {
+  margin-bottom:  1.9rem;
+}
+
+.page-break {
+  page-break-before: always;
+}
+
+@media print {
+  /* fix | code blocks in PDF export are trimmed */
+  .content pre {
+    white-space: pre-wrap;
+  }
+}
+</style>
+<style type="text/css">
+
+
+
+/*
+ * Read-only
+ *
+ * To add a theme:
+ *   1. Add a .css file to the same folder.
+ *   2. Restart the app. */
+
+::selection {
+  background: rgba(255,255,255,.1);
+}
+
+:root {
+  --line-height: 1.9rem;
+
+  background: hsl(0,0%,8%);
+  color: #aaa;
+  font-family: system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height:  1.9rem;
+}
+
+.content {
+  max-width: 626px;
+}
+
+/* Quotes
+   ---------------- */
+
+blockquote {
+  border-left: .2rem solid #333;
+  color: #777;
+  margin-left: 0;
+  padding-left: 1rem;
+  position: relative;
+}
+
+/* Headings
+   ---------------- */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: system-ui;
+  font-weight: normal;
+  line-height: normal;
+  margin-bottom:  1.9rem;
+  margin-top: calc(1.5 *  1.9rem);
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.7rem;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-size: 1.4rem;
+}
+
+h1 > code,
+h2 > code,
+h3 > code,
+h4 > code,
+h5 > code,
+h6 > code {
+  font-size: inherit;
+  line-height: 0;
+}
+
+/* Paragraphs */
+
+p {
+  margin-bottom:  1.9rem;
+}
+
+/* Inlines
+   ---------------- */
+
+a[href] {
+  color: #8ac;
+  text-decoration: none;
+}
+
+a[href] img {
+  /* hide link underline */
+  box-shadow: 0 10px 0 #fff;
+}
+
+kbd {
+  border: 2px solid #ddd;
+  border-bottom: 3px solid #ddd;
+  border-radius: 4px;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 1rem;
+  margin: 0 .2rem;
+  padding: .2rem .6rem;
+}
+
+/* Media
+   ---------------- */
+
+img {
+  max-width: 100%;
+}
+
+/* Rules
+   ---------------- */
+
+hr {
+  border: none;
+  border-top: .2rem solid #333;
+  box-sizing: border-box;
+  height: 0;
+  padding: 0;
+  margin-bottom:  1.9rem;
+}
+
+/* Tables
+   ---------------- */
+
+table {
+  border-collapse: collapse;
+  border-top: .3rem solid #333;
+  margin-bottom:  1.9rem;
+  width: 100%;
+}
+
+table td,
+table th {
+  padding: calc( 1.9rem / 4) .6rem;
+}
+
+table td:first-child,
+table th:first-child {
+  padding-left: 0;
+}
+
+table td:last-child,
+table th:last-child {
+  padding-right: 0;
+}
+
+table th {
+  font-weight: normal;
+  text-align: left;
+}
+
+table tbody tr:first-child {
+  border-top: .2rem solid #333;
+}
+
+table tbody tr:last-child {
+  border-bottom: .3rem solid #333;
+}
+
+/* Unordered Lists
+   ---------------- */
+
+ul {
+  list-style: disc;
+  padding-left: 2.4rem;
+  margin-bottom:  1.9rem;
+}
+
+/* Ordered Lists
+   ---------------- */
+
+ol {
+  padding-left: 2.4rem;
+  margin-bottom:  1.9rem;
+}
+
+ol ul,
+ol ol,
+ul ol,
+ul ul {
+  margin-bottom: 0;
+  padding-left: 2.4rem;
+}
+
+ol ol,
+ul ol {
+  list-style-type: lower-roman;
+}
+
+/* Tasks
+   ---------------- */
+
+.task-list-item {
+  list-style-type: none;
+}
+
+.task-list-item input {
+  font-size: 1rem;
+  margin: 0 0 0 -1.6rem;
+  vertical-align: middle;
+  width: 1.3rem;
+}
+
+.task-list-item p {
+  margin-bottom: calc(.5 *  1.9rem);
+}
+
+/* Math
+   ---------------- */
+
+.katex-display {
+  padding: 0.6rem 0;
+  font-size: 2rem;
+  overflow-x: auto;
+  border-radius: 4px;
+  margin-bottom: 28px;
+  text-align: left;
+}
+
+.katex--error {
+  color: #777;
+}
+
+/* Code Blocks
+   ---------------- */
+
+code {
+  background: #292929;
+  border-radius: 2px;
+  color: #aaa;
+  font-family: 'Roboto Mono', monospace;
+  font-size: .95rem;
+  margin: 0 .2rem;
+  padding: .1rem .5rem;
+}
+
+.content > pre {
+  background: #292929;
+  font-family: 'Fira Mono', monospace;
+  margin-bottom:  1.9rem;
+  padding: calc(.5 *  1.9rem) 1.2rem;
+  tab-size: 4;
+  overflow-x: auto;
+}
+
+.content > pre code {
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Code
+   ---------------- */
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #777;
+}
+
+.token.operator,
+.token.punctuation {
+  color: #999;
+}
+
+.token.selector,
+.token.attr-name,
+.token.entity,
+.token.url {
+  color: #987;
+}
+
+.token.tag,
+.token.constant,
+.token.keyword {
+  color: #a7a;
+}
+
+.token.function,
+.token.attr-value {
+  color: #68a;
+}
+
+.token.number,
+.token.boolean,
+.token.regex,
+.token.string {
+  color: #6a8;
+}
+
+.token.variable,
+.token.property,
+.token.key {
+  color: #a66;
+}
+
+/* Print
+   ---------------- */
+
+@media print {
+  :root {
+    font-size: 14px !important;
+  }
+}
+
+</style>
+</head>
+<body>
+<h1 id="service-level-objectives">Service Level Objectives</h1>
+<p>Online services want to ensure customers have a positive experience in their product. One way they do this is by defining <strong>Service Level Objectives</strong>, or <strong>SLOs</strong>.</p>
+<p>An SLO is like a guarantee made to customers. By defining an SLO, an organization is promising to maintain a defined level of service, often related to the performance and availability of their systems. Here are some examples:</p>
+<ul>
+<li>The website landing/home page will take &lt;5 seconds to load 99% of the time over a 7 day period</li>
+<li>Checkout service will operate without error 99% of the time each 30 days</li>
+<li>The landing/home page will be able to successfully process at least 1,000 requests per second, 99% of the time, measured in 90-day increments</li>
+<li>Average response time in the cart service is &lt;300 milliseconds, 98% of the time, measured in 7-day increments</li>
+</ul>
+<p>Notice each includes the same components:</p>
+<ul>
+<li><strong>Scope</strong>: The specific area an SLO relates to, such as “checkout service”, or “landing page”. This is an area or function that impacts user experience.</li>
+<li><strong>Target Value</strong>: A measurable threshold for performance, like “1,000 requests per second” or “less than 5 seconds”. Data used to measure an SLO is referred to as a <strong>Service Level Indicator (SLI)</strong>, because it <em>indicates</em> whether an SLO is met.</li>
+<li><strong>Target Rate</strong>: A percentage of the time performance will meet the target value.</li>
+<li><strong>Time Window</strong>: Period for which data is evaluated, such as “over 7 days”.</li>
+</ul>
+<p>Notice also that each SLO is centered around user experience. SLOs should capture performance and availability levels that, even if <em>barely</em> met, would keep the average user satisfied. In the simplest terms:</p>
+<ul>
+<li><strong>Service <em>meets</em> SLO targets → Happy users</strong></li>
+<li><strong>Service <em>misses</em> SLO targets → Frustrated users</strong></li>
+</ul>
+<p>For this reason, SLOs monitor the performance and availability most likely to impact a user’s experience: like load times, error rates, and functionality working in the manner users need and expect.</p>
+<h2 id="service-level-indicators-objectives-and-agreements">Service Level Indicators, Objectives, and Agreements</h2>
+<p>An SLO should be focused on user experience. Think about what makes a positive user experience in a website, app, or online service:</p>
+<ul>
+<li>Load times are reasonable</li>
+<li>Functionality works as expected</li>
+<li>Users are able to complete whatever task or action they visited the service for, for example:
+<ul>
+<li>On an ecommerce site, you can complete an order</li>
+<li>On a digital calendar, you can create, edit, and delete calendar events without error</li>
+</ul>
+</li>
+</ul>
+<p>For example, a typical user won’t care about the precise integrity of your internal systems. But they <em>will</em> care if those systems negatively impact their experience with long load times, frequent errors, and inconsistent functionality.</p>
+<p>When considering SLOs, focus on users’ goals and experiences. Ask yourself questions like:</p>
+<ul>
+<li>How are your users interacting with your application?</li>
+<li>What is their journey through the application?</li>
+<li>Which parts of your infrastructure do these journeys interact with?</li>
+<li>What are they expecting from your systems? What are they hoping to accomplish?</li>
+<li>What would prevent them from accomplishing their goals?</li>
+</ul>
+<p>After identifying what is necessary to keep users content, the next step is locating data to measure each SLO.</p>
+<h2 id="service-level-indicators-sl-is">Service level indicators (SLIs)</h2>
+<p>Data used to measure an SLO is called a <strong>Service level indicator (SLI)</strong>, because it <em>indicates</em> whether the SLO is met.</p>
+<p>For example, the SLO <em>“The website landing/home page will take &lt;5 seconds to load 99% of the time over a 7 day period”</em> refers to website load times. To determine whether this SLO is met, you would need latency data capturing average landing page load times for the past 7 days. This latency data would be the SLI for this SLO.</p>
+<p>Because SLOs aim to quantify user experience, their associated SLIs are values that correspond to the quality of that user experience. This includes things like:</p>
+<ul>
+<li>The number of requests to an endpoint that complete successfully</li>
+<li>The number of requests to an endpoint that complete within 500ms</li>
+<li>Average load times in specific areas and pages users need</li>
+</ul>
+<p>SLIs are often formatted as percentages, representing the rate of “good” events out of all valid events. For example, a valid event could be a user request to an endpoint, regardless of the request’s success or failure. A “good” event would be a successful <code>200 OK</code> request to that endpoint. The SLI would be the percentage of all valid endpoint requests that were <code>200 OK</code> successful.</p>
+<p><img alt="SLI Equation" src="https://files.cdn.thinkific.com/file_uploads/655405/images/b96/2de/c80/02-01_equation.png"></p>
+<h2 id="service-level-agreements-sl-as">Service level agreements (SLAs)</h2>
+<p><strong>Service level agreements</strong>, or <strong>SLAs</strong>, address expectations, impacts, and consequences if agreed-upon reliability is not met. This is a contract that outlines what happens if a service meets—or misses—SLO targets. Consequences for missing SLOs are often business decisions or financial repercussions, such as:</p>
+<ul>
+<li>The customer expects a given service to have a 0.05% maximum error rate daily, or they’ll receive a rebate.</li>
+<li>The customer expects only 10% of monthly requests to take longer than 500ms to complete, or they’ll be reimbursed for the compute overage.</li>
+</ul>
+<p>These stipulations are often related to business and financial relationships between the user and service. As such, SLAs are generally outside of the purview of Engineers. Instead, they’re often written by other company stakeholders before specific SLOs are quantified.</p>
+<p>Engineering teams can derive their SLOs from the SLAs defined by other parts of the company, but SLO targets should generally be more strict than SLA targets.</p>
+<h2 id="time-window">Time window</h2>
+<p>In an SLO, the time window refers to the period for which the SLI will be evaluated to determine if it meets SLO targets.</p>
+<p>It’s best practice to define a rolling time window—such as <code>the past 30 days</code>—as opposed to a fixed window, like <code>the month of August</code>. This is because a user’s perception of a service’s reliability is heavily influenced by their recent experience with that service. The average user will not reset their expectations when a new month begins.</p>
+<p>Typical SLO time windows are 7, 30, and 90 days.</p>
+<h2 id="target-rates-and-reliability">Target rates &amp; reliability</h2>
+<p>You may have noticed SLO target rates are often ~99%, as seen in examples from previous lessons. But if SLOs are meant to guarantee positive user experiences, why aren’t they aiming for 100%?</p>
+<p>In reality, 100% reliability is an impractical target that goes against best practices for many reasons:</p>
+<ul>
+<li><strong>It’s difficult</strong>: Striving for perfection is hard, especially over longer periods of time. It puts undue stress and expectations on engineering teams.</li>
+<li><strong>Users don’t need it</strong>: The difference between 99% and 100% is negligible—even unnoticeable—for most users.</li>
+<li><strong>Teams must balance time</strong>: Engineers can’t spend all their time maintaining perfect reliability and availability. Some of their time must be used to deliver value through developing new features, products, etc.</li>
+</ul>
+<p>Aiming for less than 100% reliability means a small amount of undesirable performance/events are allowable. For example, if an SLO has a target of 99% uptime, outages could still occur &gt;=1% of the time without breaching the SLO. This amount of allowable “bad” events is called an <strong>error budget</strong>.</p>
+<h2 id="error-budgets">Error budgets</h2>
+<p>An error budget quantifies an acceptable amount of unreliability. In other words, the amount of “bad” events that can happen without breaching an SLO. They are formatted as 100% minus the SLO target. Consider the following:</p>
+<p><code>Average cart service response time is &lt;300 milliseconds, 98% of the time, measured in 7-day increments.</code></p>
+<p>This SLO targets a response time of &lt;300ms 98% of the time in a rolling 7-day window. This means &gt;=2% of requests may have <em>longer</em> response times, without breaching the SLO. For every 100,000 requests, 2,000 are “allowed” to fail in a 7-day period, because the SLI’s total rate of will still be &gt;=98%.</p>
+<h3 id="how-teams-use-error-budgets">How teams use error budgets</h3>
+<p>Like a financial budget, an error budget is meant to be spent. When a team knows how much budget is remaining in their SLOs, they can allocate time and resources accordingly.</p>
+<p><img alt="Error Budget Equation" src="https://files.cdn.thinkific.com/file_uploads/655405/images/f36/05d/b68/03-01_errorbudget-eqn.png"></p>
+<p>When an error budget is nearly exhausted (&lt;= 0% remaining), teams prioritize reliability to ensure they don’t breach SLOs. This means focusing on lower-risk tasks unlikely to consume budget, such as:</p>
+<ul>
+<li>Prioritizing postmortem items</li>
+<li>Automating deployment pipelines</li>
+<li>Improving monitoring and observability</li>
+<li>Freezing feature releases</li>
+</ul>
+<p>When an error budget is readily available (&gt; 0% remaining), teams prioritize velocity and higher-risk tasks, because they have ‘room’ to encounter errors and issues without breaching SLOs. This includes things like:</p>
+<ul>
+<li>Releasing new features</li>
+<li>Making system changes</li>
+<li>Trying risky (but valuable) experiments</li>
+</ul>
+<h2 id="burn-rates">Burn rates</h2>
+<p>It’s also helpful to understand when error budgets are being spent at a higher rate than usual. This is tracked by something called a burn rate. A <strong>burn rate</strong> is a unitless number indicating how fast an error budget is being “spent” relative to its SLO target.</p>
+<p>For example, if an SLO with a 30-day window is on track to consume its budget in 30 days, it would have a burn rate of <code>1</code>. If it was on track to consume its budget in 15 days it would have a burn rate of <code>2</code>, because it is “spending” its error budget at 2x the intended rate.</p>
+<p>By tracking burn rates and identifying when rates spike or increase, you can resolve issues and return the rate to baseline before your SLO’s error budget is consumed.</p>
+<h2 id="sl-os-in-practice">SLOs in Practice</h2>
+<ol start="2">
+<li>
+<p>In your browser, log in to <a href="https://app.datadoghq.com/account/login">app.datadoghq.com</a></p>
+</li>
+<li>
+<p>In the main menu, hover over <strong>APM</strong> and click <strong>Traces</strong> to navigate to the <a href="https://app.datadoghq.com/apm/traces">Traces Explorer</a>.</p>
+</li>
+<li>
+<p>Locate the facet panel on the left. Expand options for <strong>Env</strong> and <strong>Service</strong>.</p>
+</li>
+</ol>
+<blockquote>
+<p>Service Level Objectives—or SLOs—define the level of service you strive to provide users. To identify SLOs, you must understand the user experience your application or product offers. This includes things like:</p>
+<ul>
+<li>What do users achieve in your application?</li>
+<li>What are the most critical pathways, tasks, or actions?</li>
+<li>What would prevent them from having a good—or even functional—experience?</li>
+</ul>
+</blockquote>
+<ol start="5">
+<li>
+<p>Navigate to APM &gt; Services &gt; Service Catalog. This is a list of all services associated with your account. Locate the env dropdown menu above the list. This is where you select your environment</p>
+</li>
+<li>
+<p>Hover over the service you'd like to inspect in the list entry to reveal a Full Page button. Click Full Page to open the service overview page</p>
+</li>
+<li>
+<p>Locate the Resources list near the bottom of the page.</p>
+</li>
+<li>
+<p>In the Resources list on the service overview page, click yor desired <code>route/endpoint</code> to open its details.</p>
+</li>
+<li>
+<p>Under Resource Summary, locate the Latency graph. Click the View full screen button (four outward arrows) above the graph to enlarge. Notice there are multiple metrics in the legend below the graph. Each metric name is preceded by p + a numerical value (for example, p50, p75, etc). This refers to a distribution percentile. The ideal percentile would be metric p99 this means that 99% of requests have latencies lower than this value.</p>
+</li>
+</ol>
+<h3 id="creating-a-monitor-for-slo-s-in-practice">Creating a Monitor for SLO's (in practice)</h3>
+<blockquote>
+<p><sup><sub><i>Some screenshots were taken from a Datadog lab. Just replace with your <code>env</code>, <code>service</code>, <code>route/endpoint</code>.</i></sub></sup></p>
+</blockquote>
+<p>Datadog offers two approaches to measuring SLOs:</p>
+<ol>
+<li>
+<p><strong>By Count</strong>: References metric(s) tracked in Datadog to measure the ratio of good events to total events. The SLO target is the percentage of how many events were "good" in a given time period.</p>
+<ul>
+<li>These are also called <a href="https://docs.datadoghq.com/service_management/service_level_objectives/metric/"><strong>Metric-Based SLOs</strong></a>.</li>
+</ul>
+</li>
+<li>
+<p><strong>By Monitor Uptime</strong>: References one or more existing monitors. The SLO target is the percentage of time monitors are in an <code>OK</code> state. This is most useful for time-based data.</p>
+<ul>
+<li>These are also known as <a href="https://docs.datadoghq.com/service_management/service_level_objectives/monitor/"><strong>Monitor-Based SLOs</strong></a>.</li>
+</ul>
+</li>
+</ol>
+<p>Your SLO for homepage load times will be measured by Monitor uptime, because latency is a time-based metric. It will look like this:</p>
+<p><em><code>"Over the past 7 days, 99% of the time the p99 latency of a home page request should be less than 5 seconds."</code></em></p>
+<p>That is, for 99% of the past 7 days, 99% of home page requests should experience less than 5 seconds of latency.</p>
+<p>Our SLO will be Monitor-based, you'll need to create a new Monitor for homepage latency. The Monitor will then be used to construct your SLO.</p>
+<ol>
+<li>
+<p>In Datadog, navigate to <a href="https://app.datadoghq.com/monitors#/create"><strong>Monitors &gt; New Monitor</strong></a>.</p>
+</li>
+<li>
+<p>Select <strong>APM</strong> from the list on the left. This will open a form.</p>
+</li>
+<li>
+<p>Under <strong>Select monitor scope</strong>, select <strong>APM Metrics</strong>.</p>
+<ul>
+<li>In the <strong>Primary tags</strong> field, select <code>env:{yourenv}</code>.</li>
+<li>For <strong>Service</strong>, select <code>service-yourservice</code>.</li>
+<li>For <strong>Resource</strong>, select <code>route/endpoint</code>.</li>
+<li>For <strong>Evaluate the query over the last</strong>, leave the default <code>5 minutes</code>.
+<img alt="Monitor new scope" src="https://play.instruqt.com/assets/tracks/vv9tknii38ii/38895ae7d3e518644669a54085af113b/assets/monitor-new-scope.png"></li>
+</ul>
+</li>
+<li>
+<p>Under <strong>Set alert conditions</strong>, select <code>Threshold Alert</code>.</p>
+<ul>
+<li>Set the alert criteria to <strong>Trigger when</strong> <code>p99 latency</code> <strong>is</strong> <code>above</code> <strong>the threshold</strong>.</li>
+<li>For the <strong>Alert threshold</strong> enter <code>5</code>.</li>
+<li>Leave the optional <strong>Warning threshold</strong> blank.
+<img alt="Monitor new conditions" src="https://play.instruqt.com/assets/tracks/vv9tknii38ii/b54108eec1ce18e709302fa3b30d3276/assets/monitor-new-conditions.png"></li>
+</ul>
+</li>
+<li>
+<p>In the <strong>Notify your team</strong> section you will see a text editor.</p>
+<ul>
+<li>Pick a Good Name Something like:</li>
+</ul>
+<p>"<code>route/endpoint</code> <em>has an abnormal change in throughput on</em> <code>env:{yourenv}</code>"</p>
+<ul>
+<li>
+<p>Replace the message in the body of the text editor with something like:</p>
+<p><code>Monitor for the SLO "99% of the time the p99 latency of a home page request should be less than 5 seconds".</code></p>
+<p><img alt="New Monitor message in Monitor creation form" src="https://play.instruqt.com/assets/tracks/vv9tknii38ii/09cf1b17549d5ba4a5ee8c172b0ed849/assets/new-monitor-message-in-datatdog-ui.png"></p>
+</li>
+</ul>
+</li>
+<li>
+<p>Adjust all remaining settings and fields as-needed. Click <strong>Create</strong>. You'll navigate to a detail page for the new monitor.</p>
+<ul>
+<li>At first, the Monitor will have a status of <code>NO DATA</code>.
+<img alt="New Monitor detail page with a NO DATA status" src="https://play.instruqt.com/assets/tracks/vv9tknii38ii/d65b5840a3366a83154f1a2a17878579/assets/new-monitor-no-data.png"></li>
+<li>After several moments it should update to an status more than likely it'll be <code>OK</code>.
+<img alt="New Monitor detail page with an OK status" src="https://play.instruqt.com/assets/tracks/vv9tknii38ii/88f84b4e3fe2a7e68c77a3b9cb5cbffe/assets/new-monitor-ok-status.png"></li>
+</ul>
+</li>
+<li>
+<p>On the detail page for your new Monitor, notice the metric query in the <strong>Query</strong> section.
+<img alt="New Monitor detail page with Query info emphasized" src="https://play.instruqt.com/assets/tracks/vv9tknii38ii/db930e61d151681a45b3591b220ac926/assets/new-monitor-query.png"></p>
+<ul>
+<li>The <code>trace.rack.request</code> metric is scoped to the respective <code>env</code>, <code>service</code>, and <code>resource_name</code>.</li>
+</ul>
+<blockquote>
+<p><strong>Note</strong>: For more information on distribution trace metrics, review the <a href="https://docs.datadoghq.com/tracing/guide/ddsketch_trace_metrics">DDSketch-based Metrics in APM</a> documentation.</p>
+</blockquote>
+</li>
+<li>
+<p>Notice that <strong>Tags</strong> have also been added for <code>env</code>, <code>service</code>, and <code>resource_name</code>.
+<img alt="New Monitor detail page with Tags emphasized" src="https://play.instruqt.com/assets/tracks/vv9tknii38ii/c64bd56b1b72af982e79a066c9af32f6/assets/new-monitor-tags.png"></p>
+<ul>
+<li>You can use these tags to search the monitors in the <strong>Manage Monitors</strong> list. They also link the monitor to corresponding APM Service and Resource pages.</li>
+</ul>
+</li>
+</ol>
+<p>With your monitor in place, you can now use it to create your Monitor-based SLO for your page latency issue.</p>
+<h3 id="creating-a-monitor-based-slo-in-practice">Creating a Monitor based SLO (in practice)</h3>
+<ol>
+<li>
+<p>In Datadog, navigate to <a href="https://app.datadoghq.com/slo/manage"><strong>Service Mgmt &gt; Services &gt; SLOs</strong></a>.</p>
+</li>
+<li>
+<p>Click <strong>New SLO</strong> in the upper-right. This will open a form.
+<img alt="Blank New SLO form seen in Datadog UI" src="https://play.instruqt.com/assets/tracks/vv9tknii38ii/70962a5bdab89d12856106f7a25ddee0/assets/blank-new-slo-form.png"></p>
+</li>
+<li>
+<p>Under <strong>Define your SLO measurement</strong>, select <strong>By Monitor Uptime</strong>. This will reveal a <strong>Select monitors</strong> dropdown menu.</p>
+</li>
+<li>
+<p>In the <strong>Select monitors</strong> dropdown, select the monitor you created above:  "<code>route/endpoint</code> <em>has an abnormal change in throughput on</em> <code>env:{yourenv}</code>"
+<img alt="Section 1 of the New SLO form complete" src="https://play.instruqt.com/assets/tracks/vv9tknii38ii/ee03d801255f0cf60fec50de7913135c/assets/new-monitor-slo-form-section-one-complete.png"></p>
+</li>
+<li>
+<p>Under <strong>Set your target &amp; time window</strong>, update the statement to read: <strong>Evaluate over a rolling time window of <code>7 days</code> with a target of <code>99%</code></strong>.</p>
+<ul>
+<li>Leave the optional <strong>Warning threshold</strong> blank.
+<img alt="Section 2 of the New SLO form complete" src="https://play.instruqt.com/assets/tracks/vv9tknii38ii/107bf8dba563498c0d374b5390c72ef5/assets/new-monitor-slo-form-section-two-complete.png"></li>
+</ul>
+</li>
+<li>
+<p>Under <strong>Add names and tags</strong>, enter the following <strong>Name</strong>:
+<code>Page P99 Latency</code></p>
+<p>Under <strong>Tags</strong>, select each of the following:</p>
+</li>
+</ol>
+<ul>
+<li><code>env:</code></li>
+<li><code>service:yourservice</code></li>
+<li><code>route/endpoint</code></li>
+</ul>
+<p>Add <strong>Team Tags</strong> as-needed.</p>
+<p>Click <strong>Create</strong>. You will navigate to a detail panel for your new SLO.</p>
+<p>The <strong>History</strong> section is might be empty, but this is expected if this is a new <code>route/endpoint</code>.</p>
+<p><a href="https://play.instruqt.com/assets/tracks/vv9tknii38ii/55279702a870e01182cd97a6cc653e85/assets/monitor-slo-7-days.png"><img alt="Monitor SLO 7 days" src="https://play.instruqt.com/assets/tracks/vv9tknii38ii/55279702a870e01182cd97a6cc653e85/assets/monitor-slo-7-days.png"></a></p>
+<blockquote>
+<p><em>SLO replay</em>:
+Monitor-based or "By Monitor Uptime" SLOs also have a feature called <a href="https://docs.datadoghq.com/monitors/service_level_objectives/monitor/#underlying-monitor-and-slo-histories">SLO Replay</a>.
+SLO Replay backfills SLO statuses with historical data pulled from underlying monitors’ metrics and queries. This means if you create or update a Monitor-based SLO it will be populated with relevant historical data when available.</p>
+</blockquote>
+<h3 id="creating-a-metric-based-slo-in-practice">Creating a Metric based SLO (in practice)</h3>
+<p>As determined earlier, the second Storedog SLO is: <em><code>"Over the past 30 days, 99% of requests to the cart will be successful."</code></em> You'll create this Metric-based SLO next.</p>
+<ol>
+<li>
+<p>In Datadog, return to <a href="https://app.datadoghq.com/slo/manage"><strong>Service Mgmt</strong> &gt; <strong>Services</strong> &gt; <strong>SLOs</strong></a> and click <strong>New SLO</strong> in the upper-right.</p>
+</li>
+<li>
+<p>Under <strong>Define your SLO measurement</strong>, select <strong>By Count</strong>.
+Below this, notice the <strong>Define your SLI</strong> heading with two sets of form fields: one for <strong>Good events</strong> and another for <strong>Total events</strong>.</p>
+<p><img alt="Good and Total event fields visible in Metric-based SLO form" src="https://play.instruqt.com/assets/tracks/vv9tknii38ii/cd22dc83048f6f47ad9fd25f08ee7474/assets/empty-good-and-bad-event-fields-in-metric-slo-form.png"></p>
+</li>
+<li>
+<p>Under <strong>Good events</strong>, in the <strong>a</strong> field, insert <code>trace.rack.request.hits</code>. Then update each field as follows:</p>
+<ul>
+<li>In the <strong>from</strong> field, insert each of the following:
+<ul>
+<li><code>env:</code></li>
+<li><code>service:your-service</code></li>
+<li><code>resource_name</code></li>
+</ul>
+</li>
+<li>Leave <strong>sum by</strong> blank.</li>
+</ul>
+<p><img alt="Good events fields visible in New SLO Form" src="https://play.instruqt.com/assets/tracks/vv9tknii38ii/e0763a046a7d7a5e1538baf4104ebfeb/assets/first-half-good-events-in-new-slo-form.png"></p>
+</li>
+<li>
+<p>Below the fields you just completed, click <strong>Add Query</strong>.</p>
+<p><img alt="Add Query button under Good Events" src="https://play.instruqt.com/assets/tracks/vv9tknii38ii/ed5a2091241f0db1413150feefbaaf2b/assets/add-query-button-under-good-events.png"></p>
+</li>
+<li>
+<p>Additional fields will appear. Complete them as follows:</p>
+<ul>
+<li>For <strong>b</strong>, replace the pre-populated value with <code>trace.rack.request.errors</code>.</li>
+<li>In the <strong>from</strong> field, confirm the following are present:
+<ul>
+<li><code>env:</code></li>
+<li><code>service:your-service</code></li>
+<li><code>resource_name</code></li>
+</ul>
+</li>
+<li>Leave <strong>sum by</strong> blank.</li>
+</ul>
+<p><img alt="A and B queries both complete under Good Events section of New Metric-Based SLO form" src="https://play.instruqt.com/assets/tracks/vv9tknii38ii/2a9bf00407834bd5c0aa51ac10cf0108/assets/first-two-good-event-queries-in-new-slo-form.png"></p>
+</li>
+<li>
+<p>At the bottom of <strong>Good events</strong>, locate the field reading <code>a + b</code>. Update this to <code>a - b</code>.</p>
+<p><img alt="Completed Good Events section of new Metric-based SLO form" src="https://play.instruqt.com/assets/tracks/vv9tknii38ii/17ac69cc1a7fd0c0d27f586a57cd837b/assets/good-events-section-of-slo-form.png"></p>
+<blockquote>
+<p><strong>Note</strong>: There is no direct metric for successful requests. Instead, there are metrics for total requests (<code>trace.rack.request.hits</code>) and for requests with errors (<code>trace.rack.request.errors</code>). You can calculate the number of successful requests by subtracting error-ridden requests from total requests. That is, <code>trace.rack.request.hits - trace.rack.request.errors</code>. Or, in this context, <code>a - b</code>.</p>
+</blockquote>
+</li>
+<li>
+<p>Under <strong>Total events</strong>, update fields as follows:</p>
+<ul>
+<li><strong>a</strong>: <code>trace.rack.request.hits</code></li>
+<li><strong>from</strong>: Add each of the following:
+<ul>
+<li><code>env:</code></li>
+<li><code>service:your-service</code></li>
+<li><code>resource_name</code></li>
+</ul>
+</li>
+<li><strong>sum by</strong>: Leave blank.</li>
+</ul>
+<p><img alt="New SLO form with section one complete" src="https://play.instruqt.com/assets/tracks/vv9tknii38ii/0258b6dfe788f0a5a0e25d2e9df1c86d/assets/total-events-section-of-new-slo-form.png"></p>
+</li>
+<li>
+<p>Under <strong>Set your target &amp; time window</strong>, update the statement to read: <strong>Evaluate over a rolling time window of <code>30 days</code> with a target of <code>99%</code>.</strong>
+Leave the optional <strong>Warning threshold</strong> blank.</p>
+<p><img alt="New SLO form with section two complete" src="https://play.instruqt.com/assets/tracks/vv9tknii38ii/0565258654483d8a70e1b11b26f20d8a/assets/new-slo-section-two-complete.png"></p>
+</li>
+<li>
+<p>Under <strong>Add name and tags</strong>, enter the following <strong>Name</strong>:</p>
+<p><code>Comparing Requests</code></p>
+</li>
+</ol>
+<p>For Description, copy/paste the following:</p>
+<p><code>99% of requests will be successful</code></p>
+<p>Select each of the following <strong>Tags</strong>:</p>
+<ul>
+<li><code>env:</code></li>
+<li><code>service:your-service</code></li>
+<li><code>resource_name</code></li>
+</ul>
+<p>Add <strong>Team Tags</strong> as-needed.</p>
+<p><img alt="New SLO form with section three complete" src="https://play.instruqt.com/assets/tracks/vv9tknii38ii/738962b25b041ddf11852047b3dd2609/assets/new-slo-section-three-complete.png"></p>
+<p>Click <strong>Create</strong>. You will be directed to detail panel for the new SLO.</p>
+<p><img alt="New SLO details in Datadog UI" src="https://play.instruqt.com/assets/tracks/vv9tknii38ii/661b78746276c6607913aaa2232447c4/assets/new-slo-details.png"></p>
+<h2 id="creating-an-error-budget">Creating an error budget</h2>
+<p><a href="https://docs.datadoghq.com/monitors/service_level_objectives/error_budget">Error budget monitors</a> notify you when an SLO's error budget has been consumed to (or past) a point of your choosing.</p>
+<ol>
+<li>
+<p>In the detail panel for the <strong>SLO you want an error budget for</strong> you just created, click the <strong>Alerts</strong> tab.</p>
+<blockquote>
+<p><strong>Note</strong>: You can access this page by navigating to <strong>Service Mgmt &gt; SLOs</strong> and clicking <strong>SLO you want an error budget for</strong>.</p>
+</blockquote>
+<p><img alt="Alerts tab as seen in SLO Detail Panel" src="https://play.instruqt.com/assets/tracks/vv9tknii38ii/bec8c079ebd06830902c06ebff0fd7f4/assets/alerts-tab-in-slo-detail-panel.png"></p>
+</li>
+<li>
+<p>In the Alerts tab, click the <strong>New Monitor</strong> button on the right. You will navigate to a form.</p>
+</li>
+<li>
+<p>Under <strong>Select SLO</strong>, confirm your <code>SLO you want an error budget for</code> SLO is listed.</p>
+<p><img alt="Select SLO option in New Monitor form" src="https://play.instruqt.com/assets/tracks/vv9tknii38ii/2943dd3bd48d67b5110b91b1126759bd/assets/select-slo-in-new-monitor-form.png"></p>
+</li>
+<li>
+<p>Under <strong>Set alert conditions</strong>, select <strong>Error Budget</strong>.</p>
+<ul>
+<li>Update the <strong>Alert if</strong> line to read: <code>95</code> <strong>% of budget for</strong> <code>30-day target (primary)</code> <strong>is consumed</strong>.</li>
+<li>Update the error budget <strong>Warn if</strong> line to read: <code>90</code> <strong>% is consumed</strong>.</li>
+</ul>
+<p><img alt="Set Alert Conditions in New Monitor Form" src="https://play.instruqt.com/assets/tracks/vv9tknii38ii/891ec5080f3e07c4f1404a3a36e5a3de/assets/set-alert-conditions-in-new-monitor-form.png"></p>
+</li>
+<li>
+<p>Under <strong>Notify your team</strong>, enter the following in the subject field:</p>
+<p><code>Error Budget Alert on SLO: SLO you want an error budget for</code></p>
+</li>
+<li>
+<p>Add a message to the text body</p>
+</li>
+<li>
+<p>Adjust default values as-needed in <strong>Notify your services and your team members</strong>, <strong>Content displayed in notification</strong> and <strong>Renotification</strong> fields.</p>
+</li>
+</ol>
+<p>In the <strong>Tags</strong> field (<em>NOT</em> the <strong>Add SLO Tags</strong> option), select each of the following:
+- <code>env:{yourenv}</code>
+- <code>service:your-service</code>
+- <code>resource_name</code>
+Leave remaining fields as-is. The completed form should look like similar this:</p>
+<p><a href="https://play.instruqt.com/assets/tracks/vv9tknii38ii/4f66cba9992e804fc7816ece4466f100/assets/errorbudget-monitor-create.png"><img alt="Error budget monitor create" src="https://play.instruqt.com/assets/tracks/vv9tknii38ii/4f66cba9992e804fc7816ece4466f100/assets/errorbudget-monitor-create.png"></a></p>
+<p>Click <strong>Create</strong>. You will navigate to a detail page for your new monitor. The status will initially read <code>NO DATA</code>:</p>
+<p><a href="https://play.instruqt.com/assets/tracks/vv9tknii38ii/2717ae8824ea50c259ea6db949dc5156/assets/new-error-budget-alert.png"><img alt="New Error Budget alert in Datadog UI" src="https://play.instruqt.com/assets/tracks/vv9tknii38ii/2717ae8824ea50c259ea6db949dc5156/assets/new-error-budget-alert.png"></a></p>
+<p>It will take several minutes for the monitor to evaluate data and update the status.</p>
+
+</body>
+</html>
