@@ -377,3 +377,6 @@ Click **Create**. You will navigate to a detail page for your new monitor. The s
 It will take several minutes for the monitor to evaluate data and update the status.
 
 
+
+SLO: Checklist
+[checklist](https://files.cdn.thinkific.com/file_uploads/655405/attachments/836/f34/9e0/datadog_slo_checklist.pdf)
